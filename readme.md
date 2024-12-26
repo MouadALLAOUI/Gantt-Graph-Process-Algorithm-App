@@ -115,7 +115,7 @@ We welcome contributions! To contribute:
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for more details.
 
 ## CHANGELOG
-check ***[ChangeLOG](CHANGELOG.md)***
+See the ***[CHANGELOG.md](CHANGELOG.md)*** for details about changes and updates.
 
 ## Contact
 For any questions or feedback, contact [Mouad](mailto:moadallaoui1@gmail.com).
