@@ -5,7 +5,7 @@ class GanttGraph:
 
     def __init__(
         self,
-        size=(10, 2),
+        size=(12, 4),
         ypos=1,
         colors=None,
         xlabel="Time",

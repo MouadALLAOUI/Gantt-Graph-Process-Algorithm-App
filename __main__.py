@@ -1,18 +1,15 @@
-from ordannacement.cooperatif.fifo import Fifo_Coop
-from ordannacement.cooperatif.round_robin import Round_Robin_Coop
-from ordannacement.premtif.fifo import Fifo_Prem
-from ordannacement.premtif.round_robin import Round_Robin_Prem
-from data.set_data import set_data
-from classes.processus import Processus
-from classes.graph import GanttGraph
-
+from classes import Processus, GanttGraph
+from ordannacement.cooperatif import Fifo_Coop, Round_Robin_Coop, SRTF_Coop
+from ordannacement.premtif import Fifo_Prem, Round_Robin_Prem, SRTF_Prem
+from data import set_data, get_data
+from random import randint
 
 dataTest = [
-    Processus("P0", 0, 4, 0),
-    Processus("P1", 1, 3, 0),
-    Processus("P2", 2, 2, 0),
-    Processus("P3", 3, 3, 0),
-    Processus("P4", 4, 4, 0),
+    Processus("P0", 0, randint(1, 5), randint(0, 5)),
+    Processus("P1", randint(0, 5), randint(1, 5), randint(0, 5)),
+    Processus("P2", randint(0, 5), randint(1, 5), randint(0, 5)),
+    Processus("P3", randint(0, 5), randint(1, 5), randint(0, 5)),
+    Processus("P4", randint(0, 5), randint(1, 5), randint(0, 5)),
 ]
 
 
@@ -33,9 +30,19 @@ def main():
             if isEntryData in ["c", "console"]:
                 data = set_data()
             elif isEntryData in ["r", "ready"]:
-                print("Sorry, ready data is not available yet.")
-                continue
+                data = get_data()
             elif isEntryData in ["t", "test"]:
+                # + Just some decoration
+                print("Process Table\n")
+                print("-" * 40)
+                print(f"| {'Name':^8}|{'Entry':^8}|{'CPUs':^8}|{'Priority':^8} |")
+                print("-" * 40)
+                for process in dataTest:
+                    print(
+                        f"| {process.name:^8}|{process.entry:^8}|{process.cpu:^8}|{process.priority:^8} |"
+                    )
+                    print("-" * 40)
+                # + Decoration end
                 data = dataTest
             else:
                 print("Invalid choice. Please choose 'c' or 'r'.")
@@ -48,6 +55,8 @@ For 'FIFO Cooperative', type (fc)
 For 'FIFO Preemptive', type (fp)
 For 'Round-Robin Cooperative', type (rc)
 For 'Round-Robin Preemptive', type (rp)
+For 'Shortest Remaining Time First Cooperative', type (sc)
+For 'Shortest Remaining Time First Preemptive', type (sp)
 : """
             ).lower()
             if alg in ["fc", "fifo cooperative"]:
@@ -64,8 +73,14 @@ For 'Round-Robin Preemptive', type (rp)
                 graph.setTitle("Round-Robin Preemptive")
                 Quantum = int(input("Enter the quantum value: "))
                 ganttData = Round_Robin_Prem(data, Quantum)
+            elif alg in ["sc", "shortest cooperative", "srtfc"]:
+                graph.setTitle("Shortest Remaining Time First Cooperative")
+                ganttData = SRTF_Coop(data)
+            elif alg in ["sp", "shortest preemptive", "srtfp"]:
+                graph.setTitle("Shortest Remaining Time First Preemptive")
+                ganttData = SRTF_Prem(data)
             else:
-                print("Invalid algorithm choice. Please type 'fc' or 'fp'.")
+                print("Invalid algorithm choice.")
                 continue
 
             # Print and draw the Gantt chart
@@ -84,7 +99,7 @@ For 'Round-Robin Preemptive', type (rp)
 
 if __name__ == "__main__":
     main()
-    # ganttData = Round_Robin_Prem(dataTest)
+    # ganttData = SRTF_Coop(dataTest)
     # GanttGraph().drawGraph(ganttData)
     # cpu_count = {proc.name: proc.cpu for proc in dataTest}
     # for entry in ganttData:

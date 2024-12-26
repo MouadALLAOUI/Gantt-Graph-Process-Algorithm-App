@@ -1,14 +1,16 @@
-# Gantt Graph Process Algorithm App  
+# Gantt Graph Process Algorithm App (MonoCore)
 
 A Python application for visualizing process scheduling algorithms using Gantt charts. This educational tool helps demonstrate various CPU scheduling mechanisms through interactive visualization.
 
 ## Table of Contents
 - [Introduction](#introduction)
+- [Project Structure](#projectstructure)
 - [Installation](#installation)
 - [Features](#features)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
+- [CHANGELOG](#changelog)
 - [Contact](#contact)
 - [Acknowledgments](#acknowledgments)
 
@@ -16,6 +18,36 @@ A Python application for visualizing process scheduling algorithms using Gantt c
 
 This application provides visual representations of common process scheduling algorithms through Gantt charts, making it easier to understand how different scheduling mechanisms work. It was developed by Mouad as an educational project to demonstrate process scheduling concepts.
 
+## Project Structure
+
+```bash
+    ProcessusGanttGraphs/
+    ├── __main__.py
+    ├── __init__.py
+    ├── readme.md
+    ├── classes/
+    │   ├── graph.py
+    │   ├── processus.py
+    │   └── __init__.py
+    ├── data/
+    │   │── set_data.py
+    │   │── get_data.py
+    │   └── __init__.py
+    ├── assets/
+    │   └── Figure_1.png
+    └── ordannacement/
+        ├── __init__.py
+        ├── cooperatif/
+        │   ├── __init__.py
+        │   ├── fifo.py
+        │   ├── srtf.py
+        │   └── round_robin.py
+        └──  premtif/
+            ├── __init__.py
+            ├── fifo.py
+            ├── srtf.py
+            └── round_robin.py
+```
 ## Installation  
 
 1. Prerequisites
@@ -27,24 +59,23 @@ This application provides visual representations of common process scheduling al
         pip install matplotlib
     ```
 
-3. Navigate to the __main__ file and run:
-    ```bash
-        python __main__.py
-    ```
+3. Navigate to the navigate root directory and run one of this:
+- `python __main__.py`
+- `python .`
 
 ## Features
 
 - Multiple scheduling algorithm implementations:
     * **First In First Out _(FIFO)_**
     * **Round Robin _(RR)_**
-    * **Shortest Remaining Time First _(SRTF)_** (Currently under development)
+    * **Shortest Remaining Time First _(SRTF)_**
     * **Cooperative Scheduling**
     * **Preemptive Scheduling**
 
 - Flexible data input options:
-    * Interactive console input
-    * CSV file import
-    * Built-in test datasets
+    * **Interactive console input**
+    * **CSV file import**
+    * **Built-in test datasets** randomly generated
 
 - Real-time Gantt chart visualization using matplotlib
 
@@ -82,6 +113,9 @@ We welcome contributions! To contribute:
 
 ## License
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for more details.
+
+## CHANGELOG
+check ***[ChangeLOG](CHANGELOG.md)***
 
 ## Contact
 For any questions or feedback, contact [Mouad](mailto:moadallaoui1@gmail.com).
