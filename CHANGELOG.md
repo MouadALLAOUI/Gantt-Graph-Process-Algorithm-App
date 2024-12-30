@@ -4,6 +4,16 @@ All notable changes to Gantt Graph Process Algorithm App will be documented in t
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2024-12-29
+### Added
+- add gui using pyqt5
+- add AppGui classes for gui
+### Fixed
+- fix bug with infinite loop in rrc
+- fix some simple algorithme
+- fix test data generation
+- fix some error handling
+
 ## [1.0.0] - 2024-12-26
 ### Added
 - Initial release of Gantt Graph Process Algorithm App
@@ -27,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Planned Features
-- GUI interface for process input
+- Gui saving prossess
 - Export functionality for Gantt charts
 - Additional scheduling algorithms:
     - Multi-level Queue Scheduling

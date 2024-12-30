@@ -3,7 +3,10 @@ from datetime import datetime
 from classes.processus import Processus
 
 
-def set_data():
+def setData():
+    """
+    Collects process data from user input and returns a list of Processus objects.
+    """
     processusList = []
     save_to_local = False
 
@@ -17,7 +20,8 @@ def set_data():
             processusNum = int(
                 input("How many processes are you willing to work with?: ")
             )
-        except ValueError:  # Catch specific exceptions for clarity
+        except ValueError as ve:
+            print(f"Input error: {ve}.")
             print("!!! Not to be rude, but you need to provide us with an integer.")
             continue  # ? Get back to the beginning
 
@@ -27,7 +31,8 @@ def set_data():
                 isPriority = True
             if isPriority in ["no", "n", "false", "0"]:
                 isPriority = False
-        except ValueError:  # Catch specific exceptions for clarity
+        except ValueError as ve:
+            print(f"Input error: {ve}.")  # Catch specific exceptions for clarity
             print("!!! Not to be rude, but you need to provide us with an integer.")
             continue  # ? Get back to the beginning
 
@@ -52,6 +57,9 @@ def set_data():
                     processusCPUs = int(
                         input(f"How many CPU cycles does Process {i} take? ")
                     )
+                    if processusCPUs < 1:
+                        print("CPU cycles must be greater than 0.")
+                        continue
                     if isPriority:
                         # ? Get the priority of our process.
                         processusPriority = int(
@@ -61,7 +69,10 @@ def set_data():
                         processusPriority = 0
 
                     inputsValidation = False
-                except ValueError:  # Catch specific exceptions for clarity
+                except ValueError as ve:
+                    print(
+                        f"Input error: {ve}."
+                    )  # Catch specific exceptions for clarity
                     print("!!! For now, all the inputs should be integers.")
                     continue  # ? Get back to the beginning
 

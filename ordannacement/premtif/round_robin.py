@@ -12,7 +12,7 @@ def Round_Robin_Prem(data, Quantum=2):
     data.sort(key=lambda p: (p.entry, -p.priority))
 
     #! loop until all processes are completed
-    while True:
+    while any(proc.rcpu > 0 for proc in data):
         # todo: loop to manage the wainting list and processus according to thier entry time
         for proc in data:
             if proc.entry == current_time and proc not in [p[0] for p in waitingList]:

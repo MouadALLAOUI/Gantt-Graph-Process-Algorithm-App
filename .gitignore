@@ -4,3 +4,7 @@
 
 # csv files
 /*.csv
+# pycache folder
+__pycache__/
+__pycache__/*
+/*.cpython-313.pyc
