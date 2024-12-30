@@ -1,16 +1,11 @@
-from classes import Processus, GanttGraph
+import sys
+from classes import GanttGraph, AppGui
 from ordannacement.cooperatif import Fifo_Coop, Round_Robin_Coop, SRTF_Coop
 from ordannacement.premtif import Fifo_Prem, Round_Robin_Prem, SRTF_Prem
-from data import set_data, get_data
-from random import randint
+from data import setData, getData, generateTestData
+from PyQt5.QtWidgets import QApplication
 
-dataTest = [
-    Processus("P0", 0, randint(1, 5), randint(0, 5)),
-    Processus("P1", randint(0, 5), randint(1, 5), randint(0, 5)),
-    Processus("P2", randint(0, 5), randint(1, 5), randint(0, 5)),
-    Processus("P3", randint(0, 5), randint(1, 5), randint(0, 5)),
-    Processus("P4", randint(0, 5), randint(1, 5), randint(0, 5)),
-]
+dataTest = generateTestData()
 
 
 def main():
@@ -28,9 +23,9 @@ def main():
                 "Do you want to enter data via console (c) or use ready data (r) or test data (t)? [c/r/t]: "
             ).lower()
             if isEntryData in ["c", "console"]:
-                data = set_data()
+                data = setData()
             elif isEntryData in ["r", "ready"]:
-                data = get_data()
+                data = getData()
             elif isEntryData in ["t", "test"]:
                 # + Just some decoration
                 print("Process Table\n")
@@ -98,11 +93,11 @@ For 'Shortest Remaining Time First Preemptive', type (sp)
 
 
 if __name__ == "__main__":
-    main()
-    # ganttData = SRTF_Coop(dataTest)
-    # GanttGraph().drawGraph(ganttData)
-    # cpu_count = {proc.name: proc.cpu for proc in dataTest}
-    # for entry in ganttData:
-    #     cpu_count[entry["name"]] -= entry["CPUs"]
-
-    # print("Remaining CPU times:", cpu_count)
+    methode = input("Do you want to use the GUI version? [y/n]: ").lower()
+    if methode in ["n", "no"]:
+        main()
+    else:
+        app = QApplication(sys.argv)
+        window = AppGui()
+        window.show()
+        sys.exit(app.exec_())

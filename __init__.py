@@ -50,10 +50,7 @@ __default_config__ = {
 
 # Package Requirements
 __python_requires__ = ">=3.0"
-__dependencies__ = [
-    "matplotlib>=3.0.0",
-    "random",
-]
+__dependencies__ = ["matplotlib>=3.0.0", "random", "tkinter"]
 
 
 def get_version():

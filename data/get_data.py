@@ -4,7 +4,7 @@ from tkinter import filedialog
 from classes import Processus
 
 
-def get_data():
+def getData():
     data = []
     while True:
         try:
@@ -25,7 +25,7 @@ def get_data():
                     # Loop through the rows and print them
                     for row in reader:
                         data.append(
-                            Processus(row[0], row[1], row[2], row[3])
+                            Processus(row[0], int(row[1]), int(row[2]), int(row[3]))
                         )  # Each row is a list
             else:
                 print("No file selected")

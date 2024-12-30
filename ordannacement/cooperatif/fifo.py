@@ -2,6 +2,7 @@ def Fifo_Coop(data):
     waitingList = []  # ? list were we put ready to run process
     inRun = None  # ? express the process in exucution
     ganttData = []
+    current_time = 0
     # ? here we add the remaining (rest) CPUs for each process
     for proc in data:
         proc.setRCPUs(proc.cpu)
@@ -10,10 +11,10 @@ def Fifo_Coop(data):
     iterNum = sum(proc.cpu for proc in data)  # inline for loop
 
     #! loop to run the sorting
-    for i in range(iterNum + 1):
+    while any(proc.rcpu > 0 for proc in data):
         # todo: we will create a loop to manage the wainting list and add process according to thier entry
         for proc in data:
-            if proc.entry == i and proc not in waitingList:
+            if proc.entry == current_time and proc not in waitingList:
                 waitingList.append(proc)
         # todo: sort the waitingList by priority then by entry time
         waitingList.sort(key=lambda p: (p.priority, p.entry))
@@ -32,7 +33,7 @@ def Fifo_Coop(data):
             ganttData.append(
                 {
                     "name": inRun.name,
-                    "startTime": i,
+                    "startTime": current_time,
                     "CPUs": 1,  # Each iteration runs for 1 unit
                 }
             )
@@ -40,6 +41,8 @@ def Fifo_Coop(data):
             if inRun.rcpu == 0:
                 waitingList.remove(inRun)
                 inRun = None  # Reset to pick the next process
+
+        current_time += 1  # Increment time
 
     # ? re-sort ganttData
     dataToDraw = []

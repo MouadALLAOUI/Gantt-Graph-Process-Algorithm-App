@@ -28,10 +28,12 @@ This application provides visual representations of common process scheduling al
     ├── classes/
     │   ├── graph.py
     │   ├── processus.py
+    │   ├── gui.py
     │   └── __init__.py
     ├── data/
     │   │── set_data.py
     │   │── get_data.py
+    │   │── testdata.py
     │   └── __init__.py
     ├── assets/
     │   └── Figure_1.png
@@ -101,6 +103,8 @@ This application provides visual representations of common process scheduling al
 5. View the generated Gantt chart visualization
 > ### _Example Gantt Chart:_
 > ![Gantt Chart Example](./assets/Figure_1.png)
+> ### _Gui Image:_
+> ![Gantt Chart Example](./assets/gui.png)
 
 ## Contributing
 We welcome contributions! To contribute:
